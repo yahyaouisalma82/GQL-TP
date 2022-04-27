@@ -40,5 +40,41 @@ export const db = {
             id: 3,
             designation: 'GL4'
         },
+    ],
+    todo:[
+        {
+            id:1,
+            name:"wash dishes",
+            content:"C bon",
+            status:"WAITING",
+            user:1
+        },
+        {
+            id:2,
+            name:"wash car",
+            content:"C bon",
+            status:"WAITING",
+            user:3
+        },
+    ],
+    users:[
+        {
+            id:"1",
+            name:"asma",
+            email:"a@a", 
+            todos:["1","2"] 
+        },
+        {
+            id:"2",
+            name:"tasnim",
+            email:"a@a",
+            todos:["1","2"] 
+        }, 
+        {
+            id:"3",
+            name:"salma",
+            email:"a@a",
+            todos:["1","2"] 
+        }
     ]
 }
