@@ -45,3 +45,24 @@ type User {
     email:String!
     todos:[Todo!]
 }
+input AddTodoInput{
+    name:String!
+    content:String! 
+    user:String!
+}
+input DeleteTodoInput{
+    id:String!
+}
+input ChangeTodoInput{
+    id:String!
+    name:String
+    content:String
+    status:Status
+    user:String
+}
+type Mutation{
+    addTodo(addTodoInput:AddTodoInput):Todo
+    ModifyTodo(changeTodoInput:ChangeTodoInput):Todo
+    DeleteTodo(deleteTodoInput:DeleteTodoInput):Todo
+
+}
