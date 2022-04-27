@@ -1,7 +1,12 @@
 export const Subscription = {
-    newClassroom: {
+    // newClassroom: {
+    //     subscribe(parent, args, { pubsub }, info) {
+    //         return pubsub.asyncIterator('newClassroom');
+    //     }
+    // },
+    todo: {
         subscribe(parent, args, { pubsub }, info) {
-            return pubsub.asyncIterator('newClassroom');
+            return pubsub.asyncIterator('todo');
         }
     }
 }

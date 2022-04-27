@@ -15,7 +15,7 @@ const resolvers = {
     Todo,
     User,
     Mutation,
-    // Subscription
+    Subscription
 };
 const pubsub = new PubSub();
 const context = {

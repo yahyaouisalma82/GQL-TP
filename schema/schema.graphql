@@ -62,7 +62,14 @@ input ChangeTodoInput{
 }
 type Mutation{
     addTodo(addTodoInput:AddTodoInput):Todo
-    ModifyTodo(changeTodoInput:ChangeTodoInput):Todo
-    DeleteTodo(deleteTodoInput:DeleteTodoInput):Todo
+    ModifyTodo(changeTodoInput:ChangeTodoInput):[Todo]
+    DeleteTodo(deleteTodoInput:DeleteTodoInput):[Todo]
 
+}
+type Subscription {
+    todo:TodoSubscription!
+}
+type TodoSubscription {
+  mutation: String!
+  data: Todo!
 }

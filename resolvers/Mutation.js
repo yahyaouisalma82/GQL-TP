@@ -12,7 +12,12 @@ export const Mutation = {
         if (db.users.find((user) => user.id == addTodoInput.user)) {
             const newTodo = { id: uuidv4().toString(), ...addTodoInput };
             db.todo.push(newTodo);
-            // pubsub.publish('newTodo', {newTodo})
+            pubsub.publish('todo', {
+                todo:{
+                    mutation: "Added",
+                    data: newTodo 
+                }
+            })
             return newTodo;
         }
         else {
@@ -20,19 +25,29 @@ export const Mutation = {
         }
     },
     ModifyTodo: (parent, { changeTodoInput }, { db, pubsub }, info) => {
-         db.todo.map( (td) => {
+         console.log( db.todo.map( (td) => {
                 if (td.id == changeTodoInput.id)
-                {
-                    db.todo.td = { ...changeTodoInput };
+                {  
+                    td = { ...td, ...changeTodoInput }; 
+                    pubsub.publish('todo', {
+                        todo:{
+                            mutation: "modified",
+                            data: td 
+                        }
+                    })
                 }
             }
-        ) 
-        return db.todo.td
+        ) );
+        return db.todo 
     },
     DeleteTodo:(parent, { deleteTodoInput }, { db, pubsub }, info) => {
-        const deleted=db.todo.find((td)=>td.id==deleteTodoInput.id)
-        db.todo= db.todo.filter((td)=>td.id!==deleteTodoInput.id)
-        return  deleted 
+        const Index = db.todo.findIndex(td =>{
+            return td.id=== deleteTodoInput.id
+        } )
+        if (Index === -1) throw new Error('todo not found');
+  
+        const todos = db.todo.splice(Index, 1);
+        return todos[0];
     }
 
 }
